@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- 1. LE PARENT : la recette « fabriquer un bundle ODL » -->
+  <parent>
+    <groupId>org.opendaylight.odlparent</groupId>        <!-- CORRIGÉ : points, pas slashs -->
+    <artifactId>bundle-parent</artifactId>
+    <version>14.3.1</version>
+    <relativePath/>
+  </parent>
+
+  <!-- 2. L'IDENTITÉ de ton module -->
+  <groupId>io.github.yurine_yousra</groupId>
+  <artifactId>sdnguard-impl</artifactId>                 <!-- CHANGÉ : -impl, pour la suite du projet -->
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>bundle</packaging>
+
+  <!-- 3. LES DÉPENDANCES -->
+  <dependencies>
+    <!-- DataBroker (projet mdsal) -->
+    <dependency>
+      <groupId>org.opendaylight.mdsal</groupId>          <!-- CORRIGÉ : points -->
+      <artifactId>mdsal-binding-api</artifactId>
+      <version>16.0.3</version>
+    </dependency>
+
+    <!-- Modèles Flow / Table / Node (projet openflowplugin) -->
+    <dependency>
+      <groupId>org.opendaylight.openflowplugin.model</groupId>   <!-- CORRIGÉ : projet + sous-groupe -->
+      <artifactId>model-flow-service</artifactId>                <!-- CORRIGÉ : l'artefact précis, pas le projet -->
+      <version>1.0.0</version>                                   <!-- CORRIGÉ : balise <version> -->
+    </dependency>
+  </dependencies>
+</project>
