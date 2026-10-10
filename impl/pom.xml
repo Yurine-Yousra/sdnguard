@@ -33,5 +33,23 @@
       <artifactId>model-flow-service</artifactId>                <!-- CORRIGÉ : l'artefact précis, pas le projet -->
       <version>1.0.0</version>                                   <!-- CORRIGÉ : balise <version> -->
     </dependency>
+
+    <!-- Annotations OSGi Declarative Services (@Component, @Activate, @Reference…) -->
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.service.component.annotations</artifactId>
+    </dependency>
+
+    <!-- Logs (LoggerFactory, Logger) -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.opendaylight.mdsal.model</groupId>
+      <artifactId>ietf-topology</artifactId>
+      <version>2013.10.21.28.3</version>
+    </dependency>
   </dependencies>
 </project>
