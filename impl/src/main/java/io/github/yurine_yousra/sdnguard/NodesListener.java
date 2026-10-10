@@ -8,6 +8,10 @@
 package io.github.yurine_yousra.sdnguard;
 
 import java.util.List;
+import org.opendaylight.mdsal.binding.api.DataObjectDeleted;
+import org.opendaylight.mdsal.binding.api.DataObjectModification;
+import org.opendaylight.mdsal.binding.api.DataObjectModified;
+import org.opendaylight.mdsal.binding.api.DataObjectWritten;
 import org.opendaylight.mdsal.binding.api.DataTreeChangeListener;
 import org.opendaylight.mdsal.binding.api.DataTreeModification;
 import org.opendaylight.yang.gen.v1.urn.tbd.params.xml.ns.yang.network.topology.rev131021.network.topology.topology.Node;
@@ -21,7 +25,25 @@ public final class NodesListener implements DataTreeChangeListener<Node> {
     public void onDataTreeChanged(final List<DataTreeModification<Node>> changes) {
         LOG.info("SDN-Guard : {} changement(s) de nodes recus", changes.size());
         for (DataTreeModification<Node> change : changes) {
-            LOG.info("SDN-Guard NODES : changement recu sur node : {}", change.path());
+            DataObjectModification<Node> modification = change.getRootNode();
+
+            if (modification instanceof DataObjectWritten<Node> written) {
+                Node node = written.dataAfter();
+                LOG.info("SDN-Guard NODES : switch AJOUTE {} ({} ports)",
+                        node.getNodeId().getValue(), node.nonnullTerminationPoint().size());
+
+            } else if (modification instanceof DataObjectDeleted<Node> deleted) {
+                Node node = deleted.dataBefore();
+                LOG.info("SDN-Guard NODES : switch SUPPRIME {}", node.getNodeId().getValue());
+
+            } else if (modification instanceof DataObjectModified<Node> modified) {
+                Node before = modified.dataBefore();
+                Node after = modified.dataAfter();
+                LOG.info("SDN-Guard NODES : switch MODIFIE {} ({} ports -> {} ports)",
+                        after.getNodeId().getValue(),
+                        before.nonnullTerminationPoint().size(),
+                        after.nonnullTerminationPoint().size());
+            }
         }
     }
 
