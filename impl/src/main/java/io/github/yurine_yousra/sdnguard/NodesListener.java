@@ -18,6 +18,9 @@ import org.opendaylight.yang.gen.v1.urn.tbd.params.xml.ns.yang.network.topology.
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Ecoute les nodes (switches) de la topologie flow:1 et journalise leurs changements.
+ */
 public final class NodesListener implements DataTreeChangeListener<Node> {
     private static final Logger LOG = LoggerFactory.getLogger(NodesListener.class);
 
