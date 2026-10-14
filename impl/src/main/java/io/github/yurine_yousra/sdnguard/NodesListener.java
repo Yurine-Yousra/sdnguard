@@ -18,6 +18,8 @@ import org.opendaylight.yang.gen.v1.urn.tbd.params.xml.ns.yang.network.topology.
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+
 /**
  * Ecoute les nodes (switches) de la topologie flow:1 et journalise leurs changements.
  */
@@ -33,7 +35,7 @@ public final class NodesListener implements DataTreeChangeListener<Node> {
             if (modification instanceof DataObjectWritten<Node> written) {
                 Node node = written.dataAfter();
                 LOG.info("SDN-Guard NODES : switch AJOUTE {} ({} ports)",
-                        node.getNodeId().getValue(), node.nonnullTerminationPoint().size());
+                    node.getNodeId().getValue(), node.nonnullTerminationPoint().size());
 
             } else if (modification instanceof DataObjectDeleted<Node> deleted) {
                 Node node = deleted.dataBefore();
@@ -43,9 +45,9 @@ public final class NodesListener implements DataTreeChangeListener<Node> {
                 Node before = modified.dataBefore();
                 Node after = modified.dataAfter();
                 LOG.info("SDN-Guard NODES : switch MODIFIE {} ({} ports -> {} ports)",
-                        after.getNodeId().getValue(),
-                        before.nonnullTerminationPoint().size(),
-                        after.nonnullTerminationPoint().size());
+                    after.getNodeId().getValue(),
+                    before.nonnullTerminationPoint().size(),
+                    after.nonnullTerminationPoint().size());
             }
         }
     }
