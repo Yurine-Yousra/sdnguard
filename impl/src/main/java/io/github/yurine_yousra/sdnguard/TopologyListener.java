@@ -17,6 +17,8 @@ import org.opendaylight.yang.gen.v1.urn.tbd.params.xml.ns.yang.network.topology.
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
+
 /**
  * Ecoute les liens de la topologie flow:1 et journalise les liens ajoutes ou supprimes.
  */
